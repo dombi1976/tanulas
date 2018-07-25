@@ -1,0 +1,39 @@
+git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
+
+git config --global --unset http.proxy
+
+git config --global --get http.proxy
+
+git remote add origin https://mygithubuser:mygithubpwd@github.com/repoUser/repoName.git
+
+
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+
+$ git config --global core.editor nano
+git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -nosession"
+
+
+git config --list
+
+git help config
+
+
+CONFIGURE TOOLING
+
+Configure user information for all local repositories
+
+$ git config --global user.name 
+"
+[name]
+"
+Sets the name you want a
+tt
+ached to your commit transactions
+$ git config --global user.email "[email address]"
+Sets the email you want a
+tt
+ached to your commit transactions
+
+$ git config --global color.ui auto
+Enables helpful colorization of command line output
