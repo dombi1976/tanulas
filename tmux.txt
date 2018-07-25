@@ -1,0 +1,21 @@
+### alap parancsok
+VirtualBox esetében a "bal Ctrl"-t kell használni
++	A billenytyűket egyszerre kell használni (pl.: Ctrl +b)
+-> 	A bellentyűket egymás után kell használni(pl.: Ctrl+b -> c)
+
+
+Ctrl+b 			Tmux parancssorba belépés. 
+A leírás további részében Super -nek fogom jelölni.
+
+Super -> c		Új ablakot nyit
+Super -> w		Ablakok listázása
+Super -> n		Következő ablak
+Super -> p		Előző ablak
+Super -> s		Folyamatok (sesion) listázása
+Super -> $		Ablak átnevezése
+
+
+Super -> %		Ablak függőleges megosztás
+Super -> "		Ablak vizszintes megosztás
+Super -> nyíl jobb/bal	Mozgás a megosztott panelok között
+Super -> nyíl fel/le	Mozgás a megosztott panelok között

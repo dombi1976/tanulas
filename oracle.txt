@@ -1,0 +1,61 @@
+### alap parancsok
+
+cl scr					# képernyő tisztítása
+show all	                        # sqlplus információk megjelenítése
+conn username/password			# csatlakozás felhasználó névvel
+
+
+------------------------------------------------------------------------------
+
+### zárolt felhasználók listázása
+
+SELECT username, account_status FROM dba_users;
+
+SELECT userName, account_status FROM dba_users where lock_date is not null;
+
+
+### új felhasználó letrehozása
+
+"userName" = felhasználónév /idézőjelek nélkül/
+"password" = jelszó
+
+create user "userName" identified by "password";
+grant connect to "userName";
+grant all privileges to "userName";
+
+grant connect , resource to "userName" identified by "password";
+
+### sql fájl megnyitása
+### sql script futtatása
+
+SQL > @{path}{file}
+
+példa:
+SQL > @/oracle/scripts/script.sql
+
+
+### táblák kilistázása
+SELECT table_name FROM user_tables;
+
+
+### új adatbázis létrehozása
+
+1. új felhasználó létrehozása a fentiek szerint. pl.: test2
+
+2. csatlakozás a felhasználóval
+
+3. adatbázis létrehozása
+
+pl:
+create database test2
+    datafile ‘/u01/app/oracle/oradata/test2/sys.dbf’ size 250M
+    sysaux datafile ‘/u01/app/oracle/oradata/test2/sysaux.dbf’ size 50m
+    undo tablespace undotbs
+    datafile ‘/u01/app/oracle/oradata/test2/undo.dbf’ size 50m
+    default temporary tablespace temp
+    tempfile ‘/u01/app/oracle/oradata/test2/tmp.dbf’ size 50m
+    logfile
+            group 1 ‘/u01/app/oracle/oradata/test2/log1.ora’ size 25m,
+            group 2 ‘/u01/app/oracle/oradata/test2/log2.ora’ size 25m;
+
+
