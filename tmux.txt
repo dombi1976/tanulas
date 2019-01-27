@@ -19,3 +19,5 @@ Super -> %		Ablak függőleges megosztás
 Super -> "		Ablak vizszintes megosztás
 Super -> nyíl jobb/bal	Mozgás a megosztott panelok között
 Super -> nyíl fel/le	Mozgás a megosztott panelok között
+
+Super -> Alt+ nyíl fel/le/jobb/bal	Megosztott panel kicsinyítés, nagyítás
