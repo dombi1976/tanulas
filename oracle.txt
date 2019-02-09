@@ -57,5 +57,3 @@ create database test2
     logfile
             group 1 ‘/u01/app/oracle/oradata/test2/log1.ora’ size 25m,
             group 2 ‘/u01/app/oracle/oradata/test2/log2.ora’ size 25m;
-
-
