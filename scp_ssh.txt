@@ -1,0 +1,39 @@
+ssh-n file törlése
+pl.:
+ssh pi@192.168.x.x "rm -rf /var/www/xxx.zip"
+
+ssh listazas
+ssh pi@192.168.x.x "ls -la /var/www/"
+
+
+Szintaxis (egyszerű használathoz):
+ letöltés: scp userid@szerver:file helyi_file
+ feltöltés: scp helyi_file userid@szerver:file
+
+1. A szerverre szeretném felmásolni az elso.txt nevű állományt, azonosítónk dummy, a kiválasztott szerver a csomalin, és a szovegek nevű (már létező, home-ból nyíló) könyvtárba szeretnénk tenni
+
+$ scp elso.txt dummy@csomalin.csoma.elte.hu:szovegek/
+dummy@csomalin.csoma.elte.hu's password: [itt vakon gépeled a jelszavad!]
+elso.txt             100: |*****************************|     0 00:00    
+$ 
+
+(a továbbiakban csak a parancsot írom le, a folytatás hasonló) 2. A szerverről szeretnénk letölteni az előbb feltöltött elso.txt állományt az aktuális könyvtárba
+
+$ scp dummy@csomalin.csoma.elte.hu:szovegek/elso.txt .
+
+Fontos: a pont nem hagyható el a parancs végéről! 3. Minden szövegfile-t (txt-k) szeretnénk felmásolni a szerverre
+
+$ scp *.txt dummy@csomalin.csoma.elte.hu:szovegek/
+
+4. A szerverről szeretnénk letölteni az előbb szövegfile-okat a home könyvtárunkból nyíló download könyvtárba
+
+$ scp "dummy@csomalin.csoma.elte.hu:szovegek/*.txt" $HOME/download/
+
+5. A szerverre szeretnénk felmásolni a kotta könyvtárunkat mindenestől (belőle nyíló alkönyvtárakkal együtt is)
+
+$ scp -r kotta/ dummy@csomalin.csoma.elte.hu:
+
+6. Egyéb (haladó :) példa: egy teljes fastruktúrát szeretnénk két UNIX-os gép között szinkronizálni, úgy, hogy rendelkezésünkre áll a GNU tar
+
+$ tar -czf - sourcedir | ssh uid@host 'cd destdir && tar -xpzvf -'
+
