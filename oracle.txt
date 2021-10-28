@@ -5,7 +5,7 @@ show all	                        # sqlplus információk megjelenítése
 conn username/password			# csatlakozás felhasználó névvel
 
 
-------------------------------------------------------------------------------
+#---------------------------------------------------------------
 
 ### zárolt felhasználók listázása
 
@@ -13,6 +13,7 @@ SELECT username, account_status FROM dba_users;
 
 SELECT userName, account_status FROM dba_users where lock_date is not null;
 
+#---------------------------------------------------------------
 
 ### új felhasználó letrehozása
 
@@ -25,6 +26,8 @@ grant all privileges to "userName";
 
 grant connect , resource to "userName" identified by "password";
 
+#---------------------------------------------------------------
+
 ### sql fájl megnyitása
 ### sql script futtatása
 
@@ -33,10 +36,12 @@ SQL > @{path}{file}
 példa:
 SQL > @/oracle/scripts/script.sql
 
+#---------------------------------------------------------------
 
 ### táblák kilistázása
 SELECT table_name FROM user_tables;
 
+#---------------------------------------------------------------
 
 ### új adatbázis létrehozása
 
@@ -57,3 +62,18 @@ create database test2
     logfile
             group 1 ‘/u01/app/oracle/oradata/test2/log1.ora’ size 25m,
             group 2 ‘/u01/app/oracle/oradata/test2/log2.ora’ size 25m;
+
+#---------------------------------------------------------------
+
+### alapértelmezett nyelv megválasztása
+SYS rendszer felhasználóként !
+
+ALTERR SESSION SET NLS_DATE_LANGUAGE = HUNGARY
+NLS_DATE_FORMAT = "amegfelelő formátum megadása"
+
+Alapértelmezett formátum lekérdezése
+SELECT sysdate FROM dual;
+
+#---------------------------------------------------------------
+
+###

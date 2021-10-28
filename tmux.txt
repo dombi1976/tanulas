@@ -4,7 +4,8 @@ VirtualBox esetében a "bal Ctrl"-t kell használni
 -> 	A bellentyűket egymás után kell használni(pl.: Ctrl+b -> c)
 
 
-Ctrl+b 			Tmux parancssorba belépés. 
+
+Ctrl+b			Tmux parancssorba belépés. 
 A leírás további részében Super -nek fogom jelölni.
 
 Super -> c		Új ablakot nyit
@@ -20,3 +21,7 @@ Super -> "		Ablak vizszintes megosztás
 Super -> nyíl jobb/bal	Mozgás a megosztott panelok között
 Super -> nyíl fel/le	Mozgás a megosztott panelok között
 Super -> Alt+ nyíl fel/le/jobb/bal	Megosztott panel kicsinyítés, nagyítás
+
+
+
+

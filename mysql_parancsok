@@ -1,0 +1,42 @@
+
+sudo mysql_secure_installation 
+
+belépés
+mysql -u root -p
+
+adatbázisok listázása
+show databases;
+
+új adatbázis létrehozása
+CREATE DATABASE adatbázis;
+
+belépés adatbázisba
+use 'adatbázis'
+
+táblák listázása
+show tables;
+
+felhasználók listázása
+select user, host from mysql.user;
+
+új felhasználó létrehozása
+CREATE USER 'demo'@'localhost' IDENTIFIED BY 'password';
+
+Hiba esetén ellenőrízni kell...
+
+jelszó beállítás paramérerek lekérése
+SHOW VARIABLES LIKE 'validate_password%';
+
+Ha Empty (üres) üzenetet kapunk.nincs megfelelő plugin telepítve.
+futtatni kell az alábbit
+
+mysql> install plugin validate_password soname 'validate_password.so';
+
+jelszó paraméterek beállítása
+pl.
+SET GLOBAL validate_password_length = 6;
+SET GLOBAL validate_password_number_count = 0;
+SET GLOBAL validate_password_policy = LOW;
+
+felhasználó jogosultság (ALL9 hozzáadása
+GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';

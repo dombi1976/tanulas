@@ -1,0 +1,86 @@
+Használata:
+Fájl megnyitása: vim valami.conf
+
+ESC - normál módba való visszatérés [vagy Ctrl++], ahol pl.: a parancsokat adhatod ki [két ESC pl. akkor kell, ha v-módból való kilépésnél, ki van jelölve valami]
+i - "beillesztés mód" bekapcs [INSERT mód], "normálisan gépelhetsz" 
+I - ua., csak éppen a "whitespace" utáni résznél kezd a sorban [nagy " i "-betű] [tehát ha van TAB benne, akkor az után rögtön] [A - a sor legvégén kezd] 
+v - visual mode [ki tudsz jelölni kurzorral is szöveget, de ha átírod a ".vimrc"-t, akkor egérrel is jelölhetsz] [V - kijelöli a sort] 
+
+Mentés, megnyitás, stb: 
+:q! - kilépés mentés NÉLKÜL&kérdezés nélkül 
+:q - kilépés [ha nem módosítottuk a fájlt] 
+:w - mentés 
+:x - kilépés MENTÉSSEL&kérdezés nélkül [vagy :wq! vagy ZZ] 
+:sav filenev - mentés másként "filenev" néven, és azt megnyitja 
+:vsplit filenev - megnyit egy "filenev" nevezetű fájlt, függőleges vonallal elválasztva [:split filenev - vízszintesen] 
+:tabnew filenev - ua., csak egy új fülön nyitja meg [Ctrl+PgUp-al mozogsz köztük, vagy ":tabn" és ":tabp"-vel] 
+:call valami - a .vimrc-be írt funkció lefuttatása 
+
+Kurzor irányítása: 
+h,j,k,l - balra, le, fel, jobbra [vagy kurzorral is mozoghatsz, DE inkább ezt tanuld meg] 
+Ctrl+f, vagy Ctrl+b - oldal ugrása Előre, vagy Hátra [PgUp vagy PgDown] pl.: beírod, hogy "10", utána PgDown gomb = 10 oldalt ugrik lefele 
+G - a file végére ugrik [vagy :$] 
+gg - a file elejére ugrik 
+^ - az első nem "whitespace"-es karakteréhez ugrik 
+0 vagy $ - sor elejére vagy végére ugrani [Home vagy End] 
+w - egy szót előre [b - hátra] 
+{ - ugrás a bekezdés elejére [ } - bekezdés végére] 
+% - ha zárójelen állunk, átugrik a párjára [és fordítva] 
+fu - előre az első "u" betűig [soron belül] 
+Fu - vissza az utolsó "u" betűig [soron belül] 
+:300 - a 300. sorhoz ugrik [vagy "300G"] 
+20| - a 20. oszlophoz ugrik a soron belül 
+Ctrl+g - megmutatja, hogy módosított-e a fájl + hol vagy a fileon belül 
+w - a következő szó elejére ugrik [b - az előző szó elejére ugrik] 
+* - átugrik a következő szóra, ami egyezik azzal, amin álltál, mikor megnyomtad a *-ot [# -al visszafelé ugyanez] 
+
+Szerkesztés: 
+o - új sor nyitása a kurzor alatt [O - a kurzor felett] 
+x - kurzor alatti karakter törlése [3 karakter törlése pl.: 3x] [kurzor előtti karakter törlése: X] 
+dw - kurzortól a szó végéig törlés, Beleértve a szóközt [5dw - ua., csak 5-ször.] 
+de - kurzortól a szó végéig törlés, NEM beleértve a szóközt [mármint az utána levő szóközt] 
+d$ - kurzortól a sor végéig törlés 
+dd - sor törlése [2dd - 2 sor törlése pl.] [D - ua.] 
+%d - fájl tartalmának törlése 
+daw - kurzor pozíciótól függetlenül, ha a szón belül vagyunk, kitörli azt 
+d} - törlés a bekezdés végéig [csak egy "ötvözés" volt] 
+> - a kijelölt rész bentebb ""tolása"" [ - "kintebb"] - "olyan, mint egy csoportos TAB" :D 
+c0 - a kurzor és a sor eleje közti szöveg átírása [c$ - -||- és a sor vége -||- vagy C] 
+cw - átírás a szó végéig [3cw - a következő 3 szó átírása] [a "c" a "d" "párja", de nem csak töröl, hanem i-be is rak utána] 
+r - a kurzor alatti karakter cseréje egy másikkal [replace] 
+s - a kurzor alatti karakter helyettesítése bármennyi karakterrel [substitute, i módba tesz] 
+3s - a következő három karakter helyettesítése bármennyi karakterrel [i módba tesz] 
+d/valami - törlés előre, amíg "valami"-ig nem érünk, "valami" megmarad 
+d?valami - ua., csak vissza, & a "valami" törlésre kerül 
+
+Keresés: 
+/valami - keresés előre [a "valami" szót] [szó helyet akár regexp-eket is írhatunk! :) 
+?valami - keresés hátra 
+n - ugrás a következő találatra 
+N - ugrás az előző találatra 
+
+Csere: 
+:s/valami1/valami2 - az aktuális sorban a valami1 első előfordulását valami2-re cseréli 
+:s/valami1/valami2/g - az aktuális sorban a valami1 minden előfordulását valami2-re cseréli 
+:%s/valami1/valami2/g - a teljes fájlban 
+:.,$s/valami1/valami2/g - a kurzor sorától a fájl végéig 
+:1,.s/valami1/valami2/g - a fájl elejétől a kurzor soráig 
+:%s/valami/\U&\E/g - a "valami" szót nagybetűssé alakítja mindenhol 
+
+Indítás idejű kapcsolók: 
+
+vim +1000 valami.conf - az 1000. sornál nyitja meg a valami.conf fájlt 
+vim +/log - a "log"-szórészt tartalmazó sornál nyitja meg a fájlt 
+vim -b +/"Continue" valamiprocess - Bináris fájlok szerkesztése, példában a "Continue" szónál nyitja meg a fájlt, átírhatjuk [de azért ha lehet az eredeti hosszal, azaz ez esetben 8 karakterrel, különben segfault :D] 
+
+Egyéb: 
+u - utolsó parancs visszavonása 
+U - az egész sort helyreállítja 
+Ctrl+r - ismét [mármint visszavonás ellentettje] 
+yy - az egész sor a vágólapra [vagy Y] [5yy - öt sor a vágólapra] 
+d5d [majd p] - kivágja a kurzortól számított öt sort, és a p-vel beillesztheted később azt a kívánt helyre [~ugyan ezt teszi a ":1,5m$" - utóbbi a fájl végéhez fűzi hozzá a pl.: 5 sort :)] 
+p - vágólap tartalmának beillesztése a kurzor után, paste [P - elé] 
+yyp - aktuális sor másolása&beillesztése [vagy Yp] 
+y} - másolás a bekezdés végéig 
+gU - a kijelölésben szereplő szöveget átkonvertálja nagybetűssé [vagy U] [gu - kisbetűssé] [de lehet most is ötvözni pl.: gU10l - a következő 10 karaktert nagybetűssé alakítani] 
+
